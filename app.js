@@ -49,6 +49,19 @@ app.post('/empleados', async (req, res) => {
 
 });
 
+app.get('/empleados/:id', async (rec, res) => {
+    try {
+        const empleado = await Empleado.findById(req.params.id, '_id nombre jefeId departamentoId');
+        if (!empleado) {
+            return res.status(404).json({ error: 'Empleado no encontrado.'});
+        }
+        res.json(empleado);
+    } catch (error) {
+        res.status(500).json({ error: error.message});
+    }
+});
+
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor Exspress en http://localhost:${PORT}`);
