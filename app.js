@@ -49,7 +49,7 @@ app.post('/empleados', async (req, res) => {
 
 });
 
-app.get('/empleados/:id', async (rec, res) => {
+app.get('/empleados/:id', async (req, res) => {
     try {
         const empleado = await Empleado.findById(req.params.id, '_id nombre jefeId departamentoId');
         if (!empleado) {
