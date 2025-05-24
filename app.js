@@ -49,6 +49,7 @@ app.post('/empleados', async (req, res) => {
 
 });
 
+<<<<<<< HEAD
 app.get('/empleados/:id', async (req, res) => {
     try {
         const empleado = await Empleado.findById(req.params.id, '_id nombre jefeId departamentoId');
@@ -62,6 +63,22 @@ app.get('/empleados/:id', async (req, res) => {
 });
 
 
+=======
+app.delete('/empelados/:id', async (req, res) => {
+    try {
+        const empleadoEliminado = await Empleado.findByIdAndDelete(req.params.id);
+
+        if (!empleadoEliminado) {
+            return res.status(404).json({ error: 'Empleado no encontrado'});
+        }
+
+        res.json(empleadoEliminado);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+>>>>>>> feature/del-user
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor Exspress en http://localhost:${PORT}`);
