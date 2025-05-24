@@ -49,6 +49,30 @@ app.post('/empleados', async (req, res) => {
 
 });
 
+app.put('/empleados/:id', async (req, res) => {
+    try {
+        const { nombre, jefeId, departamentoId } = req.body;
+
+        if (!nombre) {
+            return res.status(400).json({ error: 'El nombre del empleado es obligatorio.'});
+        }
+
+        const empleadoActualizado = await Empleado.findByIdAndUpdate(
+            req.params.id,
+            { nombre, jefeId, departamentoId },
+            {new: true } // Devuelve documento actualizado
+        );
+        
+        if (!empleadoActualizado) {
+            return res.status(404).json({ error: 'Empleado no encontrado.'});
+        }
+
+        res.json(empleadoActualizado);
+    } catch (error) {
+        res.status(500).json({ error: error.message});
+    }        
+});
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor Exspress en http://localhost:${PORT}`);
