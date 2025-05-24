@@ -49,7 +49,6 @@ app.post('/empleados', async (req, res) => {
 
 });
 
-<<<<<<< HEAD
 app.get('/empleados/:id', async (req, res) => {
     try {
         const empleado = await Empleado.findById(req.params.id, '_id nombre jefeId departamentoId');
@@ -63,7 +62,6 @@ app.get('/empleados/:id', async (req, res) => {
 });
 
 
-=======
 app.delete('/empelados/:id', async (req, res) => {
     try {
         const empleadoEliminado = await Empleado.findByIdAndDelete(req.params.id);
@@ -78,7 +76,6 @@ app.delete('/empelados/:id', async (req, res) => {
     }
 });
 
->>>>>>> feature/del-user
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor Exspress en http://localhost:${PORT}`);
